@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashWise.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashWise.Api", "CashWise.Api\CashWise.Api.csproj", "{2D23C6F0-CE17-A774-FD87-4BBD740DBE0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashWise.Application.UnitTests", "CashWise.Application.UnitTests\CashWise.Application.UnitTests.csproj", "{87174A4D-D430-4696-9B11-BA75AAEBFFE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{2D23C6F0-CE17-A774-FD87-4BBD740DBE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D23C6F0-CE17-A774-FD87-4BBD740DBE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D23C6F0-CE17-A774-FD87-4BBD740DBE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87174A4D-D430-4696-9B11-BA75AAEBFFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87174A4D-D430-4696-9B11-BA75AAEBFFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87174A4D-D430-4696-9B11-BA75AAEBFFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87174A4D-D430-4696-9B11-BA75AAEBFFE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

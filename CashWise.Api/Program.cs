@@ -1,9 +1,4 @@
-using CashWise.Application.Repositories.AccountRepository;
-using CashWise.Application.Repositories.TransactionRepository;
-using CashWise.Application.Services.AccountService;
-using CashWise.Application.Services.TransactionService;
-using CashWise.Domain.Entities.Account;
-using CashWise.Domain.Entities.Transaction;
+using CashWise.Application;
 using CashWise.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,19 +15,9 @@ builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite(connectionString));
 // Extension Methods -> Services
 // Database Configuration
 
-#region [IAccount]
-
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<IAccountService, AccountService>();
-
-#endregion
-
-#region [ITransaction]
-
-builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
-builder.Services.AddScoped<ITransactionService, TransactionService>();
-
-#endregion
+builder.Services
+    .AddApplicationServiceCollection()
+    .AddInfrastructureServiceCollection();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

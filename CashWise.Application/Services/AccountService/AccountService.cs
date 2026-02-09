@@ -1,5 +1,4 @@
-﻿using CashWise.Application.Repositories.AccountRepository;
-using CashWise.Domain.Entities;
+﻿using CashWise.Domain.Entities;
 using CashWise.Domain.IRepositories;
 
 namespace CashWise.Application.Services.AccountService
@@ -15,6 +14,12 @@ namespace CashWise.Application.Services.AccountService
 
         public async Task<int> CreateAsync(string name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("[AccountService][CreateAsync] Invalid name to account: " + nameof(name));
+                return -1;
+            }
+
             var account = new Account(name);
             
             await _accountRepository.AddAsync(account);
