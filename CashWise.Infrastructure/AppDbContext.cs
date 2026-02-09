@@ -1,5 +1,4 @@
-﻿using CashWise.Domain.Entities.Account;
-using CashWise.Domain.Entities.Transaction;
+﻿using CashWise.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CashWise.Infrastructure

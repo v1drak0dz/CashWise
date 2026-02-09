@@ -1,16 +1,16 @@
-﻿using CashWise.Domain.Entities.Transaction;
+﻿using CashWise.Domain.Entities;
 using CashWise.Domain.Enums;
 
 namespace CashWise.Application.Services.TransactionService
 {
     public interface ITransactionService
     {
-        Task<Guid> CreateAsync(string description,
+        Task<int> CreateAsync(string description,
                                decimal amount,
                                TransactionCategory transactionCategory,
                                TransactionType transactionType);
-        Task<ITransaction?> GetAsync(Guid id);
-        Task<IEnumerable<ITransaction>> GetAllAsync();
-        Task DeleteAsync(Guid id);
+        Task<Transaction?> GetAsync(int id);
+        Task<List<Transaction>> GetAllAsync();
+        Task DeleteAsync(int id);
     }
 }

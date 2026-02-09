@@ -1,6 +1,6 @@
 ﻿using CashWise.Domain.Enums;
 
-namespace Api.WebApi.DTOs
+namespace CashWise.Api.WebApi.DTOs
 {
     public record CreateTransactionDto(string description,
                                        decimal amount,
@@ -12,7 +12,7 @@ namespace Api.WebApi.DTOs
                                        TransactionCategory transactionCategory,
                                        TransactionType transactionType);
 
-    public record TransactionResponseDto(Guid Id, 
+    public record TransactionResponseDto(int Id, 
                                      string description,
                                      decimal amount,
                                      TransactionCategory transactionCategory,

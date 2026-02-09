@@ -1,5 +1,6 @@
 ﻿using CashWise.Application.Repositories.AccountRepository;
-using CashWise.Domain.Entities.Account;
+using CashWise.Domain.Entities;
+using CashWise.Domain.IRepositories;
 
 namespace CashWise.Application.Services.AccountService
 {
@@ -12,7 +13,7 @@ namespace CashWise.Application.Services.AccountService
             _accountRepository = accountRepository;
         }
 
-        public async Task<Guid> CreateAsync(string name)
+        public async Task<int> CreateAsync(string name)
         {
             var account = new Account(name);
             
@@ -20,17 +21,17 @@ namespace CashWise.Application.Services.AccountService
             return account.Id;
         }
 
-        public async Task<IAccount?> GetAsync(Guid id) =>
+        public async Task<Account?> GetAsync(int id) =>
             await _accountRepository.GetByIdAsync(id);
 
-        public async Task<IEnumerable<IAccount>> GetAllAsync()
+        public async Task<IEnumerable<Account>> GetAllAsync()
         {
-            IEnumerable<Account> accounts = await _accountRepository.GetAllAsync();
+            var accounts = await _accountRepository.GetAllAsync();
 
             return accounts;
         }
 
-        public async Task DeleteAsync(Guid id) =>
+        public async Task DeleteAsync(int id) =>
             await _accountRepository.DeleteAsync(id);
     }
 }

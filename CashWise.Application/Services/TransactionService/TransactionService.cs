@@ -1,7 +1,7 @@
-﻿using CashWise.Application.Repositories.TransactionRepository;
-using CashWise.Domain.Entities.Transaction;
+﻿using CashWise.Domain.Entities;
 using CashWise.Domain.Enums;
 using CashWise.Domain.BusinessRules.StocksHandler;
+using CashWise.Domain.IRepositories;
 
 namespace CashWise.Application.Services.TransactionService
 {
@@ -15,7 +15,7 @@ namespace CashWise.Application.Services.TransactionService
         public TransactionService(ITransactionRepository transactionRepository) =>
             _transactionRepository = transactionRepository;
 
-        public async Task<Guid> CreateAsync(string description,
+        public async Task<int> CreateAsync(string description,
             decimal amount,
             TransactionCategory transactionCategory,
             TransactionType transactionType)
@@ -26,16 +26,16 @@ namespace CashWise.Application.Services.TransactionService
             return transaction.Id;
         }
 
-        public async Task<ITransaction?> GetAsync(Guid id) =>
+        public async Task<Transaction?> GetAsync(int id) =>
             await _transactionRepository.GetByIdAsync(id);
 
-        public async Task<IEnumerable<ITransaction>> GetAllAsync() =>
+        public async Task<List<Transaction>> GetAllAsync() =>
             await _transactionRepository.GetAllAsync();
 
-        public async Task DeleteAsync(Guid id) =>
+        public async Task DeleteAsync(int id) =>
             await _transactionRepository.DeleteAsync(id);
 
-        private async Task GenerateRevenueFromStock(Guid id)
+        private async Task GenerateRevenueFromStock(int id)
         {
             var transaction = await _transactionRepository.GetByIdAsync(id);
 
@@ -50,7 +50,7 @@ namespace CashWise.Application.Services.TransactionService
             await _transactionRepository.AddAsync(newTransaction);
         }
 
-        private async Task SellStock(Guid id)
+        private async Task SellStock(int id)
         {
             var transaction = await _transactionRepository.GetByIdAsync(id);
 

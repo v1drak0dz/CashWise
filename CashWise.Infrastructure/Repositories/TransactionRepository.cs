@@ -1,8 +1,8 @@
-﻿using CashWise.Domain.Entities.Transaction;
-using CashWise.Infrastructure;
+﻿using CashWise.Domain.Entities;
+using CashWise.Domain.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace CashWise.Application.Repositories.TransactionRepository
+namespace CashWise.Infrastructure.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
@@ -11,7 +11,7 @@ namespace CashWise.Application.Repositories.TransactionRepository
         public TransactionRepository(AppDbContext db)
             => _db = db;
 
-        public async Task<Transaction?> GetByIdAsync(Guid id)
+        public async Task<Transaction?> GetByIdAsync(int id)
             => await _db.Transactions.FindAsync(id);
 
         public async Task<List<Transaction>> GetAllAsync()
@@ -29,7 +29,7 @@ namespace CashWise.Application.Repositories.TransactionRepository
             await _db.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             var entity = await _db.Transactions.FindAsync(id);
 

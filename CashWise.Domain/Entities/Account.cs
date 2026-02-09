@@ -1,18 +1,17 @@
-﻿namespace CashWise.Domain.Entities.Account
+﻿namespace CashWise.Domain.Entities
 {
-    public sealed class Account : IAccount
+    public sealed class Account // Remove inherit interface
     {
-        public Guid Id { get; }
+        public int Id { get; }
         public string BankName { get; }
 
         public Account(string bankName) // BankName/BankCode
         {
-            if (string.IsNullOrWhiteSpace(BankName))
+            if (string.IsNullOrWhiteSpace(bankName))
             {
                 throw new ArgumentException("Account name is required!", nameof(bankName));
             }
-
-            Id = Guid.NewGuid();
+            
             BankName = bankName.Trim(); // Enum for the name of the bank
         }
     }

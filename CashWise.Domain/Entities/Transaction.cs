@@ -1,10 +1,10 @@
 ﻿using CashWise.Domain.Enums;
 
-namespace CashWise.Domain.Entities.Transaction
+namespace CashWise.Domain.Entities
 {
-    public sealed class Transaction : ITransaction
+    public sealed class Transaction
     {
-        public Guid Id { get; }
+        public int Id { get; }
         public string Description { get; }
         public decimal Amount { get; }
         public TransactionCategory Category { get; }
@@ -21,7 +21,6 @@ namespace CashWise.Domain.Entities.Transaction
             if (decimal.IsNegative(amount))
                 throw new ArgumentException("The amount can not be less than zero!");
 
-            Id = Guid.NewGuid();
             Description = description;
             Amount = amount;
             Category = category;

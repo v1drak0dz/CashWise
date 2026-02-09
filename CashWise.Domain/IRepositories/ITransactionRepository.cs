@@ -1,13 +1,13 @@
-﻿using CashWise.Domain.Entities.Transaction;
+﻿using CashWise.Domain.Entities;
 
-namespace CashWise.Application.Repositories.TransactionRepository
+namespace CashWise.Domain.IRepositories
 {
     public interface ITransactionRepository
     {
-        Task<Transaction?> GetByIdAsync(Guid id);
+        Task<Transaction?> GetByIdAsync(int id);
         Task<List<Transaction>> GetAllAsync();
         Task AddAsync(Transaction transaction);
         Task UpdateAsync(Transaction transaction);
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(int id);
     }
 }
