@@ -14,13 +14,7 @@ namespace CashWise.Application.Services.AccountService
 
         public async Task<int> CreateAsync(string name)
         {
-            if (string.IsNullOrEmpty(name))
-            {
-                Console.WriteLine("[AccountService][CreateAsync] Invalid name to account: " + nameof(name));
-                return -1;
-            }
-
-            var account = new Account(name);
+            var account = Account.Create(name);
             
             await _accountRepository.AddAsync(account);
             return account.Id;

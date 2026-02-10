@@ -26,5 +26,18 @@ namespace CashWise.Domain.Entities
             Category = category;
             TransactionType = transactionType;
         }
+
+        public static Transaction Create(string description,
+                           decimal amount,
+                           TransactionCategory category,
+                           TransactionType transactionType)
+        {
+            return new Transaction(
+                description,
+                amount,
+                category,
+                transactionType
+                );
+        }
     }
 }

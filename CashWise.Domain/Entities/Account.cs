@@ -14,5 +14,10 @@
             
             BankName = bankName.Trim(); // Enum for the name of the bank
         }
+
+        public static Account Create(string bankName)
+        {
+            return new Account(bankName);
+        }
     }
 }

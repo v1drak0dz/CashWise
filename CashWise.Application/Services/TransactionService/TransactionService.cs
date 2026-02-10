@@ -20,7 +20,7 @@ namespace CashWise.Application.Services.TransactionService
             TransactionCategory transactionCategory,
             TransactionType transactionType)
         {
-            var transaction = new Transaction(description, amount, transactionCategory, transactionType);
+            var transaction = Transaction.Create(description, amount, transactionCategory, transactionType);
 
             await _transactionRepository.AddAsync(transaction);
             return transaction.Id;
@@ -63,5 +63,5 @@ namespace CashWise.Application.Services.TransactionService
 
             await _transactionRepository.AddAsync(newTransaction);
         }
-}
+    }
 }

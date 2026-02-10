@@ -1,10 +1,9 @@
-using CashWise.Application;
+using CashWise.Api;
 using CashWise.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
@@ -15,9 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite(connectionString));
 // Extension Methods -> Services
 // Database Configuration
 
-builder.Services
-    .AddApplicationServiceCollection()
-    .AddInfrastructureServiceCollection();
+builder.Services.ServiceInjection();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -36,7 +33,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
