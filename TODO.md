@@ -1,15 +1,13 @@
 # TODO
 
-- Implement FluentValidation
-- Implement Mapper
-- Improve Exceptions
-
 # DOING
-
-- Implement Strategy pattern
 
 # DONE
 
+- Implement FluentValidation
+- Implement Mapper
+- Improve Exceptions
+- Implement Strategy pattern
 - Implement Factory Method pattern
 - Add Behavior.Strict on Mock
 - Move `new()` from property to Setup on unit tests

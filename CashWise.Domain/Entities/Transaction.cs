@@ -5,39 +5,40 @@ namespace CashWise.Domain.Entities
     public sealed class Transaction
     {
         public int Id { get; }
+        public DateTime Date { get; }
         public string Description { get; }
         public decimal Amount { get; }
-        public TransactionCategory Category { get; }
+        public TransactionCategory TransactionCategory { get; }
         public TransactionType TransactionType { get; }
+        public bool Executed { get; }
 
-        public Transaction(string description,
-                           decimal amount,
-                           TransactionCategory category,
-                           TransactionType transactionType)
+        private Transaction(
+            DateTime date,
+            string description,
+            decimal amount,
+            TransactionCategory transactionCategory,
+            TransactionType transactionType,
+            bool executed
+            )
         {
-            if (string.IsNullOrWhiteSpace(description))
-                throw new ArgumentException("A description is required to insert the transaction!");
-
-            if (decimal.IsNegative(amount))
-                throw new ArgumentException("The amount can not be less than zero!");
-
+            Date = date;
             Description = description;
             Amount = amount;
-            Category = category;
+            TransactionCategory = transactionCategory;
             TransactionType = transactionType;
+            Executed = executed;
         }
 
-        public static Transaction Create(string description,
-                           decimal amount,
-                           TransactionCategory category,
-                           TransactionType transactionType)
+        public static Transaction Create(
+            DateTime date,
+            string description,
+            decimal amount,
+            TransactionCategory transactionCategory,
+            TransactionType transactionType,
+            bool executed
+            )
         {
-            return new Transaction(
-                description,
-                amount,
-                category,
-                transactionType
-                );
+            return new Transaction(date, description, amount, transactionCategory, transactionType, executed);
         }
     }
 }

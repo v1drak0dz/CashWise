@@ -1,6 +1,6 @@
 ﻿using CashWise.Domain.Entities;
 
-namespace CashWise.Domain.IRepositories
+namespace CashWise.Domain.Repositories
 {
     public interface ITransactionRepository
     {

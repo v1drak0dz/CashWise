@@ -24,7 +24,7 @@ namespace CashWise.Infrastructure
             b.Entity<Transaction>().HasKey(x => x.Id);
             b.Entity<Transaction>().Property(x => x.Description).IsRequired();
             b.Entity<Transaction>().Property(x => x.Amount).IsRequired();
-            b.Entity<Transaction>().Property(x => x.Category).IsRequired();
+            b.Entity<Transaction>().Property(x => x.TransactionCategory).IsRequired();
             b.Entity<Transaction>().Property(x => x.TransactionType).IsRequired();
 
             #endregion [Accounts Table]

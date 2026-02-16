@@ -1,5 +1,5 @@
 ﻿using CashWise.Domain.Entities;
-using CashWise.Domain.IRepositories;
+using CashWise.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace CashWise.Infrastructure.Repositories
