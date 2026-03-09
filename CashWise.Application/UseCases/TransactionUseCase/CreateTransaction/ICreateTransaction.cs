@@ -4,6 +4,6 @@ namespace CashWise.Application.UseCases.TransactionUseCase.CreateTransaction
 {
     public interface ICreateTransaction
     {
-        Task<int> CreateTransactionAsync(Transaction transaction);
+        Task<Transaction> CreateTransactionAsync(Transaction transaction);
     }
 }

@@ -12,7 +12,7 @@ namespace CashWise.Domain.Entities
         public TransactionType TransactionType { get; }
         public bool Executed { get; }
 
-        private Transaction(
+        public Transaction(
             DateTime date,
             string description,
             decimal amount,
@@ -27,18 +27,6 @@ namespace CashWise.Domain.Entities
             TransactionCategory = transactionCategory;
             TransactionType = transactionType;
             Executed = executed;
-        }
-
-        public static Transaction Create(
-            DateTime date,
-            string description,
-            decimal amount,
-            TransactionCategory transactionCategory,
-            TransactionType transactionType,
-            bool executed
-            )
-        {
-            return new Transaction(date, description, amount, transactionCategory, transactionType, executed);
         }
     }
 }

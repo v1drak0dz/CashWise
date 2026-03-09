@@ -15,7 +15,7 @@ namespace CashWise.Application.Orchestrator.TransactionOrchestrator
             _getTransaction = getTransaction;
         }
 
-        public Task<int> CreateTransactionAsync(Transaction transaction) => 
+        public Task<Transaction> CreateTransactionAsync(Transaction transaction) => 
             _createTransaction.CreateTransactionAsync(transaction);
 
         public Task<Transaction?> GetTransactionByIdAsync(int id) =>

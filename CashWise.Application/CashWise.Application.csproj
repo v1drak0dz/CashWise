@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Builders\**" />
+    <EmbeddedResource Remove="Builders\**" />
+    <None Remove="Builders\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="16.0.0" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
   </ItemGroup>

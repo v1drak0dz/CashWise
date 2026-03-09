@@ -2,11 +2,11 @@
 using CashWise.Application.DTOs;
 using CashWise.Domain.Entities;
 
-namespace CashWise.Application.Mappers
+namespace CashWise.Application
 {
-    public class TransactionMapper : Profile
+    public class CashWiseMapper : Profile
     {
-        public TransactionMapper()
+        public CashWiseMapper()
         {
             // Request Mapper
             CreateMap<TransactionRequestDTO, Transaction>();

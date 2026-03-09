@@ -1,0 +1,61 @@
+# The flow chart showing how the API works
+
+# tips for the developer:
+
+- `([ ])` → retângulo com cantos arredondados (bom para _entry points_).
+- `{{ }}` → losango (bom para lógica/decisão).
+- `[/ /]` → paralelogramo (bom para operações).
+- `[( )]` → cilindro (representa bem armazenamento/persistência).
+
+```mermaid
+flowchart LR
+	%% Entry/End point
+	API(API Start Point)
+	Database[(Database)]
+
+	%% Controllers
+	TransactionController[Transaction Endpoint]
+	TransactionRepository[Transaction Persistence]
+
+	%% Use Cases
+	CreateTransactionUseCase[Create Transaction UseCase]
+	GetTransactionUseCase[Get Transaction UseCase]
+
+	%% Helpers
+	CreateTransactionValidator{Create Transaction Validator}
+	NotValidException[Not Valid Exception]
+	GetTransactionHasId{Has Id}
+
+	%% Repository Functions
+	CreateTransactionAsync[CreateTransactionAsyncFunc]
+	GetByIdAsync[GetByIdAsyncFunc]
+	GetAsyncFunc[GetAsyncFunc]
+
+	%% Standard one way flow
+	API --> TransactionController
+	TransactionRepository --> Database
+
+	subgraph Controller
+		TransactionController --> CreateTransactionUseCase
+		TransactionController --> GetTransactionUseCase
+	end
+
+	subgraph Repository
+		CreateTransactionAsync --> TransactionRepository
+		GetByIdAsync --> TransactionRepository
+		GetAsyncFunc --> TransactionRepository
+	end
+
+	%% Create Flow
+	CreateTransactionUseCase --> CreateTransactionValidator
+	CreateTransactionValidator -->|Is Valid| CreateTransactionAsync
+	CreateTransactionValidator -->|Is Not Valid| NotValidException
+	NotValidException --> CreateTransactionUseCase
+
+	%% Get Flow
+	GetTransactionUseCase --> GetTransactionHasId
+	GetTransactionHasId -->|Yes| GetByIdAsync
+	GetTransactionHasId -->|No| GetAsyncFunc
+
+
+```
