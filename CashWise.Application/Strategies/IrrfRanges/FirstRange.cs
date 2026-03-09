@@ -1,6 +1,8 @@
-﻿namespace CashWise.Application.Strategies.IRRFStrategy
+﻿using CashWise.Application.Strategies.Interfaces;
+
+namespace CashWise.Application.Strategies.IrrfRanges
 {
-    public class FirstGrade : IIRRFStrategy
+    public class FirstRange : ITaxStrategy
     {
         private const decimal Deduction = 182.16m;
         private const decimal Percentage = .075m;
