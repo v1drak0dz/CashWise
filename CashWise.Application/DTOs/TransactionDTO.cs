@@ -2,18 +2,20 @@
 
 namespace CashWise.Application.DTOs
 {
-    public record TransactionRequestDTO(
-        string description,
-        decimal amount,
-        TransactionCategory transactionCategory,
-        TransactionType transactionType
-        );
+    public class TransactionRequestDTO
+    {
+        public string Description { get; set; }
+        public decimal Amount { get; set; }
+        public TransactionCategory TransactionCategory { get; set; }
+        public TransactionType TransactionType { get; set; }
+    }
 
-    public record TransactionResponseDTO(
-        int id,
-        string description,
-        decimal amount,
-        TransactionCategory transactionCategory,
-        TransactionType transactionType
-        );
+    public class TransactionResponseDTO
+    {
+        public int Id { get; set; }
+        public string Description { get; set; }
+        public decimal Amount { get; set; }
+        public TransactionCategory TransactionCategory { get; set; }
+        public TransactionType TransactionType { get; set; }
+    }
 }

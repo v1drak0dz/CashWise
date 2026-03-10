@@ -1,20 +1,28 @@
-﻿using CashWise.Domain.Repositories;
+﻿using CashWise.Application.Factories.InvestmentPositionFactory;
+using CashWise.Domain.Repositories;
 
 namespace CashWise.Application.UseCases.InvestmentUseCase.BuyInvestmentUseCase
 {
     public class BuyInvestmentUseCase : IBuyInvestmentUseCase
     {
         private readonly IInvestmentRepository _investmentRepository;
+        private IInvestmentPositionFactory _investmentPositionFactory;
 
-        public BuyInvestmentUseCase(IInvestmentRepository investmentRepository) =>
+        public BuyInvestmentUseCase(IInvestmentRepository investmentRepository, IInvestmentPositionFactory investmentPositionFactory)
+        {
             _investmentRepository = investmentRepository;
+            _investmentPositionFactory = investmentPositionFactory;
+        }
 
-        public async Task Execute(int id, int quantity, decimal price)
+        public async Task Execute(int id, string asset, int quantity, decimal price)
         {
             var position = await _investmentRepository.GetInvestmentPositionAsync(id);
 
             if (position == null)
-                throw new InvalidOperationException("Investment position not found");
+            {
+                position = _investmentPositionFactory.Create(asset);
+                await _investmentRepository.AddInvestmentPositionAsync(position);
+            }
 
             position.Buy(price, quantity);
 

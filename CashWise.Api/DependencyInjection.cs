@@ -1,8 +1,10 @@
 using CashWise.Application.UseCases.TransactionUseCase.CreateTransaction;
 using CashWise.Domain.Repositories;
 using CashWise.Infrastructure.Repositories;
-using CashWise.Application.Mappers;
 using CashWise.Application.Orchestrator.TransactionOrchestrator;
+using CashWise.Application;
+using AutoMapper;
+using CashWise.Application.UseCases.TransactionUseCase.GetTransaction;
 
 namespace CashWise.Api
 {
@@ -20,12 +22,13 @@ namespace CashWise.Api
             services.AddScoped<ICreateTransaction, CreateTransaction>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<ITransactionOrchestrator,  TransactionOrchestrator>();
+            services.AddScoped<IGetTransaction, GetTransaction>();
 
             #endregion [Transaction]
 
             #region [Mapper]
 
-            services.AddAutoMapper(typeof(TransactionMapper).Assembly);
+            services.AddAutoMapper(typeof(CashWiseMapper));
 
             #endregion [Mapper]
 

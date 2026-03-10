@@ -7,6 +7,7 @@ namespace CashWise.Infrastructure
     {
         public DbSet<Account> Accounts => Set<Account>();
         public DbSet<Transaction> Transactions => Set<Transaction>();
+        public DbSet<InvestmentPosition> InvestmentPositions => Set<InvestmentPosition>();
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -19,7 +20,7 @@ namespace CashWise.Infrastructure
 
             #endregion [Accounts Table]
 
-            #region [Accounts Table]
+            #region [Transactions Table]
 
             b.Entity<Transaction>().HasKey(x => x.Id);
             b.Entity<Transaction>().Property(x => x.Description).IsRequired();
@@ -27,7 +28,16 @@ namespace CashWise.Infrastructure
             b.Entity<Transaction>().Property(x => x.TransactionCategory).IsRequired();
             b.Entity<Transaction>().Property(x => x.TransactionType).IsRequired();
 
-            #endregion [Accounts Table]
+            #endregion [Transactions Table]
+
+            #region [InvestmentPositions Table]
+
+            b.Entity<InvestmentPosition>().HasKey(x => x.Id);
+            b.Entity<InvestmentPosition>().Property(x => x.Asset).IsRequired();
+            b.Entity<InvestmentPosition>().Property(x => x.Quantity).IsRequired();
+            b.Entity<InvestmentPosition>().Property(x => x.AveragePrice).IsRequired();
+
+            #endregion
         }
     }
 }

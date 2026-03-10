@@ -6,3 +6,4 @@ obj/
 */**.db-shm
 */**.db-wal
 */**-cache
+/CashWise.Api/App_Data/finance.db

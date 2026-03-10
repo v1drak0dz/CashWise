@@ -2,6 +2,6 @@
 {
     public interface IBuyInvestmentUseCase
     {
-        public Task Execute(int id, int quantity, decimal price);
+        public Task Execute(int id, string asset, int quantity, decimal price);
     }
 }

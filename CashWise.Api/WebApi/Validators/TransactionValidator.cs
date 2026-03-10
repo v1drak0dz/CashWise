@@ -7,10 +7,10 @@ namespace CashWise.Api.WebApi.Validators
     {
         public TransactionValidator()
         {
-            RuleFor(t => t.description)
+            RuleFor(t => t.Description)
                 .NotEmpty()
                 .WithMessage("Description field should not be empty!");
-            RuleFor(t => t.amount)
+            RuleFor(t => t.Amount)
                 .NotEmpty()
                 .WithMessage("Amount should not be empty");
         }

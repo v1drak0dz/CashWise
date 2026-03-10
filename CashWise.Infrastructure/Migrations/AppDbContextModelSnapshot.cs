@@ -17,11 +17,11 @@ namespace CashWise.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");
 
-            modelBuilder.Entity("CashWise.Domain.Entities.Account.Account", b =>
+            modelBuilder.Entity("CashWise.Domain.Entities.Account", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("BankName")
                         .IsRequired()
@@ -33,21 +33,48 @@ namespace CashWise.Infrastructure.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("CashWise.Domain.Entities.Transaction.Transaction", b =>
+            modelBuilder.Entity("CashWise.Domain.Entities.InvestmentPosition", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Asset")
+                        .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<decimal>("AveragePrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InvestmentPositions");
+                });
+
+            modelBuilder.Entity("CashWise.Domain.Entities.Transaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Executed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TransactionCategory")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("TransactionType")
                         .HasColumnType("INTEGER");

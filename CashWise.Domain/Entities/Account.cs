@@ -2,8 +2,8 @@
 {
     public sealed class Account
     {
-        public int Id { get; }
-        public string BankName { get; }
+        public int Id { get; private set; }
+        public string BankName { get; private set; }
 
         public Account(string bankName)
         {

@@ -2,8 +2,8 @@
 {
     public class InvestmentPosition
     {
-        public int Id { get; }
-        public string Asset { get; } = string.Empty;
+        public int Id { get; private set; }
+        public string Asset { get; private set; } = string.Empty;
         public int Quantity { get; private set; }
         public decimal AveragePrice { get; private set; }
 
