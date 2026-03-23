@@ -6,6 +6,7 @@ flowchart LR
 	%% Controllers
 	TransactionController[Transaction Endpoint]
 	TransactionRepository[Transaction Persistence]
+	InvestmentPositionRepository[Investment Position]
 
 	%% Use Cases
 	CreateTransactionUseCase[Create Transaction UseCase]
@@ -20,10 +21,13 @@ flowchart LR
 	CreateTransactionAsync[CreateTransactionAsyncFunc]
 	GetByIdAsync[GetByIdAsyncFunc]
 	GetAsyncFunc[GetAsyncFunc]
+	BuyInvestment[BuyInvestiment]
+	SellInvestment[SellInvestment]
 
 	%% Standard one way flow
 	API --> TransactionController
 	TransactionRepository --> Database
+	InvestmentPositionRepository --> Database
 
 	subgraph Controller
 		TransactionController --> CreateTransactionUseCase
@@ -34,6 +38,9 @@ flowchart LR
 		CreateTransactionAsync --> TransactionRepository
 		GetByIdAsync --> TransactionRepository
 		GetAsyncFunc --> TransactionRepository
+
+		BuyInvestiment --> InvestmentPositionRepository
+		SellInvestment --> InvestmentPositionRepository
 	end
 
 	%% Create Flow
@@ -47,3 +54,8 @@ flowchart LR
 	GetTransactionHasId -->|Yes| GetByIdAsync
 	GetTransactionHasId -->|No| GetAsyncFunc
 
+	%% Investment
+	Controller --> SellUseCase
+	SellUseCase --> InvestmentPosition
+	InvestmentPosition -->|Calculate Profit| TaxStrategy
+	TaxStrategy -->|Calculate Tax| SellResult

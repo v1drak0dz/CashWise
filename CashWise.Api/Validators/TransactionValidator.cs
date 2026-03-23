@@ -1,7 +1,7 @@
-using CashWise.Application.DTOs;
+using CashWise.Api.DTOs;
 using FluentValidation;
 
-namespace CashWise.Api.WebApi.Validators
+namespace CashWise.Api.Validators
 {
     public class TransactionValidator : AbstractValidator<TransactionRequestDTO>
     {

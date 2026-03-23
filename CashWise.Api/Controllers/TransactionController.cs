@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using CashWise.Application.DTOs;
+using CashWise.Api.DTOs;
 using CashWise.Application.Orchestrator.TransactionOrchestrator;
 using CashWise.Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CashWise.Api.WebApi.Controllers
+namespace CashWise.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

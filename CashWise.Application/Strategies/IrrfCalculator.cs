@@ -1,5 +1,7 @@
-﻿using CashWise.Application.Strategies.Interfaces;
+﻿using CashWise.Application.Attributes;
+using CashWise.Application.Strategies.Interfaces;
 using CashWise.Application.Strategies.IrrfRanges;
+using System.Reflection;
 
 namespace CashWise.Application.Strategies
 {
@@ -7,17 +9,14 @@ namespace CashWise.Application.Strategies
     {
         private readonly List<(decimal limit, Type strategyType)> _grades;
         private const decimal FreeRangeLimit = 2428.80m;
-        private const decimal FirstRangeLimit = 2726.65m;
-        private const decimal SecondRangeLimit = 3751.05m;
-        private const decimal ThirdRangeLimit = 4664.68m;
 
         public IrrfCalculator()
         {
             _grades = new List<(decimal, Type)>
             {
-                (FirstRangeLimit, typeof(FirstRange)),
-                (SecondRangeLimit, typeof(SecondRange)),
-                (ThirdRangeLimit, typeof(ThirdRange)),
+                (TryGetDecimalRange(typeof(FirstRange)), typeof(FirstRange)),
+                (TryGetDecimalRange(typeof(SecondRange)), typeof(SecondRange)),
+                (TryGetDecimalRange(typeof(ThirdRange)), typeof(ThirdRange)),
             };
         }
 
@@ -26,16 +25,26 @@ namespace CashWise.Application.Strategies
             if (salary <= FreeRangeLimit)
                 return salary;
 
-            foreach (var grade in _grades)
+            foreach (var (limit, strategyType) in _grades)
             {
-                if (salary <= grade.limit)
+                if (salary <= limit)
                 {
-                    ITaxStrategy strategy = (ITaxStrategy)Activator.CreateInstance(grade.strategyType)!;
+                    ITaxStrategy strategy = (ITaxStrategy)Activator.CreateInstance(strategyType)!;
                     return strategy.Calculate(salary);
                 };
             }
 
             return new FourthRange().Calculate(salary);
+        }
+
+        private decimal TryGetDecimalRange(Type strategyType)
+        {
+            var strategy = strategyType.GetCustomAttribute<RangeAttribute>();
+
+            if (strategy == null)
+                throw new InvalidOperationException($"RangeAttribute not found for {strategyType.Name}");
+
+            return strategy.MaxRange;
         }
     }
 }

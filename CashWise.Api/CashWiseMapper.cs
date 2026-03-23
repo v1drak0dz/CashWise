@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CashWise.Application.DTOs;
 using CashWise.Domain.Entities;
+using CashWise.Api.DTOs;
 
 namespace CashWise.Application
 {

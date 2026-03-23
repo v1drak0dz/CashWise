@@ -2,9 +2,9 @@
 
 namespace CashWise.Domain.Repositories
 {
-    public interface IInvestmentRepository
+    public interface IInvestmentPositionRepository
     {
-        Task<InvestmentPosition?> GetInvestmentPositionAsync(int investmentPositionId);
+        Task<InvestmentPosition?> GetInvestmentPositionAsync(string asset);
         Task AddInvestmentPositionAsync(InvestmentPosition investmentPosition);
         Task UpdateInvestmentPositionAsync(InvestmentPosition investmentPosition);
     }

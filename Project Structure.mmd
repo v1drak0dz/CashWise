@@ -1,0 +1,51 @@
+flowchart LR
+
+    %% API
+    api([CashWise.Api])
+    webapi[/WebApi/]
+    controllers[/Controllers/]
+    validators[/Validators/]
+
+    api --> starter([Program.cs])
+    api --> dependencyinjection([DependencyInjection.cs])
+    api --> webapi
+
+    webapi --> controllers
+    webapi --> validators
+
+    controllers --> transactioncontroller([TransactionController.cs])
+
+    validators --> transactionvalidator([TransactionValidator.cs])
+
+
+    %% Application
+    application([CashWise.Application])
+    attributes[/Attributes/]
+    dtos[/DTOs/]
+    factories[/Factories/]
+    orchestrators[/Orchestrators/]
+    strategies[/Strategies/]
+    usecases[/UseCases/]
+
+    application --> mapper([CashWiseMapper.cs])
+    application --> attributes
+    application --> dtos
+    application --> factories
+    application --> orchestrators
+    application --> strategies
+    application --> usecases
+
+    attributes --> rangeattribute([RangeAttribute.cs])
+
+    dtos --> transactiondto([TransactionDTO.cs])
+
+    investmentpositionfactory[/InvestmentPositionFactory/]
+    transactionfactory[/TransactionFactory/]
+    factories --> investmentpositionfactory
+    factories --> transactionfactory
+
+    investmentpositionfactory --> iinvestmentpositionfactory([IInvestmentPositionFactory.cs])
+    investmentpositionfactory --> cinvestmentpositionfactory([InvestmentPositionFactory.cs])
+
+    transactionfactory --> itransactionfactory([ITransactionFactory.cs])
+    transactionfactory --> ctransactionfactory([TransactionFactory.cs])
