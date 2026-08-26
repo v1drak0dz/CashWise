@@ -1,0 +1,17 @@
+﻿services:
+
+  backend:
+    build:
+      context: .
+      dockerfile: CashWise.Api/Dockerfile
+    expose:
+      - "8080"
+
+  frontend:
+    build:
+      context: ./CashWise.UI
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
