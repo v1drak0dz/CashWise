@@ -34,7 +34,9 @@
             public async Task<ActionResult> CreateTransactionAsync([FromBody] Transaction transaction)
             {
                 await transactionRepository.CreateTransactionAsync(transaction);
-                return CreatedAtAction(nameof(GetTransactionByIdAsync), transaction.Id, transaction); 
+                return CreatedAtAction("GetTransactionById", new {
+                    id = transaction.Id
+                }, transaction); 
             }
                 
         }
