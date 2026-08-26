@@ -7,5 +7,6 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/CashWise.Api.UnitTests/CashWise.Api.UnitTests.csproj" />
+    <Project Path="tests/CashWise.Domain.UnitTests/CashWise.Domain.UnitTests.csproj" />
   </Folder>
 </Solution>

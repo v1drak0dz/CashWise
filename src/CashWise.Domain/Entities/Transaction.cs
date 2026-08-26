@@ -19,6 +19,12 @@
             string transactionType
         )
         {
+            if (decimal.IsNegative(amount))
+                throw new ArgumentOutOfRangeException(nameof(amount));
+            
+            if (string.IsNullOrWhiteSpace(description) || description.Trim().Length < 3)
+                throw new ArgumentOutOfRangeException(nameof(description));
+            
             Description = description;
             Amount = amount;
             Date = date;

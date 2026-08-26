@@ -1,7 +1,10 @@
-﻿using CashWise.Application.Repositories;
+﻿using System.Runtime.CompilerServices;
+using CashWise.Application.Repositories;
 using CashWise.Domain.Entities;
 using CashWise.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+
+[assembly: InternalsVisibleTo("CashWise.Infrastructure.UnitTests")]
 
 namespace CashWise.Infrastructure.Repositories
 {

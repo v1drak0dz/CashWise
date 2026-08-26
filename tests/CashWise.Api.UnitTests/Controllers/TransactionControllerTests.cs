@@ -2,6 +2,7 @@
 using CashWise.Application.Repositories;
 using CashWise.Domain.Entities;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 
 namespace CashWise.Api.UnitTests.Controllers;
@@ -49,8 +50,8 @@ public class TransactionControllerTests
         var result = await controller.GetAllTransactionAsync();
         
         // Assert
-        result.Value.Count.Should().NotBe(0);
-        result.Should().Be(transactionsResult);
+        var response = result.Result.Should().BeOfType<OkObjectResult>().Subject;
+        response.Value.Should().BeEquivalentTo(transactionsResult);
     }
 
     [Test]
@@ -74,7 +75,8 @@ public class TransactionControllerTests
         var t = await controller.CreateTransactionAsync(transaction);
         
         // Assert
-        t.Should().Be(transaction);
+        var response = t.Should().BeOfType<CreatedAtActionResult>().Subject;
+        response.Value.Should().BeEquivalentTo(transaction);
     }
     
     [Test]
@@ -97,7 +99,7 @@ public class TransactionControllerTests
         var t = await controller.GetTransactionByIdAsync(Id);
         
         // Assert
-        t.Should().Be(transaction);
-        t.Value.Id.Should().Be(Id);
+        var response = t.Result.Should().BeOfType<OkObjectResult>().Subject;
+        response.Value.Should().BeEquivalentTo(transaction);
     }
 }
