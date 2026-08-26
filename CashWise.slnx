@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CashWise.Api/CashWise.Api.csproj" />
+    <Project Path="src/CashWise.Application/CashWise.Application.csproj" />
+    <Project Path="src/CashWise.Domain/CashWise.Domain.csproj" />
+    <Project Path="src/CashWise.Infrastructure/CashWise.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CashWise.Api.UnitTests/CashWise.Api.UnitTests.csproj" />
+  </Folder>
+</Solution>

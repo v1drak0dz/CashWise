@@ -1,0 +1,6 @@
+@CashWise.Api_HostAddress = http://localhost:5206
+
+GET {{CashWise.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
